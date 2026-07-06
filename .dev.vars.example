@@ -1,0 +1,4 @@
+# Copy this file to `.dev.vars` (git-ignored) to run `wrangler dev` locally.
+# Get both values by registering your domain at https://getwebspeed.io.
+WEBSPEED_SITE_TOKEN="wsp_site_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+WEBSPEED_VERIFY_TOKEN="xxxxxxxxxxxxxxxxxxxxxx"

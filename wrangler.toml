@@ -1,0 +1,29 @@
+name = "web-speed"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# ── Bind the Worker to YOUR zone (edit these) ────────────────────────────────
+# routes = [
+#   { pattern = "example.com/*", zone_name = "example.com" },
+#   { pattern = "www.example.com/*", zone_name = "example.com" },
+# ]
+
+# ── Per-URL content-hash store ───────────────────────────────────────────────
+# Create it with:  wrangler kv namespace create WEBSPEED_KV
+# then paste the returned id below.
+[[kv_namespaces]]
+binding = "WEBSPEED_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+# ── Weekly baseline sweep (Mondays 03:00 UTC) ────────────────────────────────
+[triggers]
+crons = ["0 3 * * 1"]
+
+[vars]
+WEBSPEED_API_BASE = "https://api.getwebspeed.io"
+# WEBSPEED_SITE_DOMAIN = "example.com"   # optional; derived from the request host if unset
+# WEBSPEED_ORIGIN = "https://your-site.com"  # optional reverse-proxy mode: run on a workers.dev subdomain in front of a separate site (handy for testing without a domain)
+
+# Secrets — never commit these; set them with wrangler:
+#   wrangler secret put WEBSPEED_SITE_TOKEN
+#   wrangler secret put WEBSPEED_VERIFY_TOKEN
